@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+  
+}
+
+model Student {
+  id        Int      @id @default(autoincrement())
+  nis       String   @unique
+  name      String
+  password  String
+  email     String?  @unique
+  kelas     String
+  jurusan   String
+  role      UserRole @default(MEMBER)
+  peminjamanBuku PeminjamanBuku[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Walas {
+  id_walas   Int      @id @default(autoincrement())
+  nama_walas String
+  no_tlp     String?  @unique
+  alamat     String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Book {
+id Int @id @default(autoincrement())
+title String
+author String
+year Int
+peminjamanBuku PeminjamanBuku[]
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
+
+}
+
+model PeminjamanBuku {
+  id_peminjaman   Int       @id @default(autoincrement())
+  Id_student      Int       
+  Id_book         Int
+  student         Student   @relation(fields: [Id_student], references: [id])
+  book            Book      @relation(fields: [Id_book], references: [id])
+  tanggalPinjam   DateTime  @default(now())
+  tanggalKembali  DateTime?
+
+  pengembalian Pengembalian?
+}
+
+model Pengembalian {
+  id_pengembalian Int @id @default(autoincrement())
+
+  id_peminjaman   Int @unique
+  peminjamanBuku  PeminjamanBuku @relation(fields: [id_peminjaman], references: [id_peminjaman])
+
+  tanggal_kembali DateTime @default(now())
+  denda           Int      @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
+  enum UserRole {
+  ADMIN
+  PETUGAS
+  MEMBER
+}
+
+
+  
+
+
+
+
