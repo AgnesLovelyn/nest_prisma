@@ -4,6 +4,6 @@
     "buildCommand": "npm install --legacy-peer-deps && npm run build"
   },
   "deploy": {
-    "startCommand": "npm run prisma:fix && npm run start:prod"
+    "startCommand": "npm run prisma:deploy && npm run start:prod"
   }
 }
