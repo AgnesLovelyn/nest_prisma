@@ -1,4 +1,4 @@
-CREATE TABLE `Student` (
+CREATE TABLE IF NOT EXISTS `Student` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `nis` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE `Student` (
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-CREATE TABLE `Walas` (
+CREATE TABLE IF NOT EXISTS `Walas` (
     `id_walas` INTEGER NOT NULL AUTO_INCREMENT,
     `nama_walas` VARCHAR(191) NOT NULL,
     `no_tlp` VARCHAR(191) NULL,
@@ -25,7 +25,7 @@ CREATE TABLE `Walas` (
     PRIMARY KEY (`id_walas`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-CREATE TABLE `Book` (
+CREATE TABLE IF NOT EXISTS `Book` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(191) NOT NULL,
     `author` VARCHAR(191) NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE `Book` (
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-CREATE TABLE `PeminjamanBuku` (
+CREATE TABLE IF NOT EXISTS `PeminjamanBuku` (
     `id_peminjaman` INTEGER NOT NULL AUTO_INCREMENT,
     `Id_student` INTEGER NOT NULL,
     `Id_book` INTEGER NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE `PeminjamanBuku` (
     PRIMARY KEY (`id_peminjaman`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-CREATE TABLE `Pengembalian` (
+CREATE TABLE IF NOT EXISTS `Pengembalian` (
     `id_pengembalian` INTEGER NOT NULL AUTO_INCREMENT,
     `id_peminjaman` INTEGER NOT NULL,
     `tanggal_kembali` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
