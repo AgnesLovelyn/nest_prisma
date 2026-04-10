@@ -24,6 +24,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prisma:fix": "prisma db push --force-reset",
+    "prisma:baseline": "prisma migrate resolve --applied 20260410013247_add_missing_tables",
     "prisma:resolve": "prisma migrate resolve --rolled-back 20260410013247_add_missing_tables"
     
   },
