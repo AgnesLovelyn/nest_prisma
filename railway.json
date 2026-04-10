@@ -3,7 +3,7 @@
     "builder": "NIXPACKS",
     "buildCommand": "npm install --legacy-peer-deps && npm run build"
   },
-   "deploy": {
-    "startCommand": "npm run prisma:resolve && npm run prisma:deploy && npm run start:prod"
+  "deploy": {
+    "startCommand": "npm run prisma:fix && npm run start:prod"
   }
 }
