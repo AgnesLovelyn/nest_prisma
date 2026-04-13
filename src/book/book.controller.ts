@@ -27,7 +27,6 @@ export class BookController {
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN)
-  @Post()
 
   @Post()
   @ApiOperation({ summary: 'Menambahkan buku (ADMIN only)' })
