@@ -8,18 +8,12 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 @Module({
   imports: [
     PrismaModule,
-    JwtModule.registerAsync({
-useFactory: () => ({
-secret: process.env.JWT_SECRET,
-signOptions: { expiresIn: '1h' },
-}),
-}),
     JwtModule.register({
-  secret: 'secretKey', 
-  signOptions: { expiresIn: '1h' },
-})
+      secret: 'secretKey',
+      signOptions: { expiresIn: '1h' },
+    }),
   ],
-  controllers: [AuthController], 
-  providers: [AuthService, JwtStrategy], 
+  controllers: [AuthController],
+  providers: [AuthService, JwtStrategy],
 })
 export class AuthModule {}
