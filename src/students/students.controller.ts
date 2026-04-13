@@ -20,8 +20,6 @@ export class StudentsController {
   constructor(private readonly studentsService: StudentsService) {}
 
   @Post()
-    @UseGuards(JwtAuthGuard, RolesGuard)
-    @Roles('ADMIN', 'MEMBER')
   create(@Body() dto: CreateStudentDto) {
     return this.studentsService.create(dto);
   }
