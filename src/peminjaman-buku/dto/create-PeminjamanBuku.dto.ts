@@ -5,5 +5,5 @@ export class CreatePeminjamanBukuDto {
   nis: string;
   
   @ApiProperty()
-  bookId: number;
+  Id_book: number;
 }

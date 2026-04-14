@@ -18,7 +18,7 @@ pinjamBuku(
   @Req() req,
   @Body() dto: CreatePeminjamanBukuDto,
 ) {
-  return this.service.pinjamBuku(req.user.nis, dto.bookId);
+  return this.service.pinjamBuku(req.user.nis, dto.Id_book);
 }
 
 @UseGuards(JwtAuthGuard, RolesGuard)
