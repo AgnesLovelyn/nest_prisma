@@ -4,7 +4,7 @@ import { UseGuards, Req } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
-
+import { CreatePeminjamanBukuDto } from './dto/create-PeminjamanBuku.dto';
 
 @Controller('peminjaman-buku')
 export class PeminjamanBukuController {
@@ -12,13 +12,13 @@ export class PeminjamanBukuController {
 
   // POST /peminjaman-buku (pakai NIS)
 @UseGuards(JwtAuthGuard, RolesGuard)
-@Roles('MEMBER')
+@Roles('MEMBER', 'ADMIN')
 @Post()
 pinjamBuku(
   @Req() req,
-  @Body('Id_book') Id_book: number,
+  @Body() dto: CreatePeminjamanBukuDto,
 ) {
-  return this.service.pinjamBuku(req.user.nis, Id_book);
+  return this.service.pinjamBuku(req.user.nis, dto.bookId);
 }
 
 @UseGuards(JwtAuthGuard, RolesGuard)
