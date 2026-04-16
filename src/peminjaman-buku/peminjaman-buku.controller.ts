@@ -6,7 +6,10 @@ import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { UserRole } from '@prisma/client';
 import { CreatePeminjamanBukuDto } from './dto/create-PeminjamanBuku.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Peminjaman')
+@ApiBearerAuth()
 @Controller('peminjaman-buku')
 export class PeminjamanBukuController {
   constructor(private readonly service: PeminjamanBukuService) {}
