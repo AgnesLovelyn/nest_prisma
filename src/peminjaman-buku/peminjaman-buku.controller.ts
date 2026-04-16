@@ -15,8 +15,8 @@ export class PeminjamanBukuController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN, UserRole.MEMBER)
   @Post()
-  pinjamBuku(@Req() req, @Body() dto: CreatePeminjamanBukuDto) {
-    return this.service.pinjamBuku(req.user.nis, dto.Id_book);
+  pinjamBuku(@Body() dto: CreatePeminjamanBukuDto) {
+    return this.service.pinjamBuku(dto.nis, dto.Id_book);
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
