@@ -6,7 +6,7 @@ import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { UserRole } from '@prisma/client';
 import { CreatePeminjamanBukuDto } from './dto/create-PeminjamanBuku.dto';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 
 @ApiTags('Peminjaman')
 @ApiBearerAuth()
@@ -18,6 +18,7 @@ export class PeminjamanBukuController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN, UserRole.MEMBER)
   @Post()
+  @ApiOperation({ summary: 'Menambahkan buku (ADMIN dan MEMBER)' })
   pinjamBuku(@Body() dto: CreatePeminjamanBukuDto) {
     return this.service.pinjamBuku(dto.nis, dto.Id_book);
   }
