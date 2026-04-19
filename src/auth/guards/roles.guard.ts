@@ -13,11 +13,15 @@ canActivate(context: ExecutionContext): boolean {
       context.getHandler(),
     );
 
+console.log('Required roles:', requiredRoles);
+
     if (!requiredRoles) {
       return true;
     }
 
     const { user } = context.switchToHttp().getRequest();
+
+console.log('User from token:', user);
 
     if (!requiredRoles.includes(user.role)) {
       throw new ForbiddenException(
