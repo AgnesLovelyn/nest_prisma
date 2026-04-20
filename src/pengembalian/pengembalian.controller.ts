@@ -1,10 +1,15 @@
 
 import { Controller, Post, Param, Get, UseGuards } from '@nestjs/common';
 import { PengembalianService } from './pengembalian.service';
-
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
+
+
+@Controller('pengembalian')
+@ApiTags('Pengembalian')
+@ApiBearerAuth()
 @Controller('pengembalian')
 export class PengembalianController {
   constructor(private readonly service: PengembalianService) {}
