@@ -26,10 +26,10 @@ export class BookController {
   constructor(private readonly service: BookService) {}
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(UserRole.ADMIN)
+  @Roles(UserRole.ADMIN, UserRole.PETUGAS)
 
   @Post()
-  @ApiOperation({ summary: 'Menambahkan buku (ADMIN only)' })
+  @ApiOperation({ summary: 'Menambahkan buku (ADMIN dan PETUGAS)' })
   create(@Body()  dto: CreateBookDto) {
     return this.service.create(dto);
   }
