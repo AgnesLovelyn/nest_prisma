@@ -16,9 +16,9 @@ export class PeminjamanBukuController {
 
   // POST /peminjaman-buku (pakai NIS)
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(UserRole.ADMIN, UserRole.MEMBER)
+  @Roles(UserRole.ADMIN, UserRole.PETUGAS)
   @Post()
-  @ApiOperation({ summary: 'Menambahkan buku (ADMIN dan MEMBER)' })
+  @ApiOperation({ summary: 'Menambahkan buku (ADMIN dan PETUGAS)' })
   pinjamBuku(@Body() dto: CreatePeminjamanBukuDto) {
     return this.service.pinjamBuku(dto.nis, dto.Id_book);
   }
