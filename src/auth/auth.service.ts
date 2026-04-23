@@ -10,25 +10,26 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async login(nis: string, password: string) {
-    const student = await this.prisma.student.findUnique({
-      where: { nis },
+  async login(username: string, password: string) {
+    const user = await this.prisma.user.findUnique({
+      where: { username },
+      include: { student: true },
     });
 
-    if (!student) {
-      throw new UnauthorizedException('NIS tidak ditemukan');
+    if (!user) {
+      throw new UnauthorizedException('Username tidak ditemukan');
     }
 
-    const passwordValid = await bcrypt.compare(password,student.password);
+    const passwordValid = await bcrypt.compare(password, user.password);
     if (!passwordValid) {
       throw new UnauthorizedException('Password salah');
     }
 
     const payload = {
-      sub: student.id,
-      nis: student.nis,
-      name: student.name,
-      role: student.role,
+      sub: user.id,
+      username: user.username,
+      role: user.role,
+      studentId: user.studentId,
     };
 
     return {

@@ -8,6 +8,7 @@ import { PeminjamanBukuModule } from './peminjaman-buku/peminjaman-buku.module';
 import { AuthModule } from './auth/auth.module';
 import { PengembalianModule } from './pengembalian/pengembalian.module';
 import { ConfigModule } from '@nestjs/config';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [PrismaModule, StudentsModule, BookModule, PeminjamanBukuModule, AuthModule, PengembalianModule, ConfigModule.forRoot({
@@ -16,7 +17,7 @@ import { ConfigModule } from '@nestjs/config';
   process.env.NODE_ENV === 'production'
   ? '.env.production'
   : '.env',
-  }),
+  }), UserModule,
 ],
   controllers: [AppController],
   providers: [AppService],

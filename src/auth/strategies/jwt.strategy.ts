@@ -1,26 +1,17 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
-import { ExtractJwt, Strategy } from 'passport-jwt';
+import { Strategy, ExtractJwt } from 'passport-jwt';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor() {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      ignoreExpiration: false,
-     secretOrKey: 'secretKey',
+      secretOrKey: 'secretKey',
     });
   }
 
-  async validate(payload: any) {
-    console.log('JWT payload:', payload);
-    if (!payload) {
-      throw new UnauthorizedException('Token tidak valid');
-    }
-    return {
-      id: payload.sub,
-      nis: payload.nis,
-      role: payload.role,
-    };
+  validate(payload: any) {
+    return payload;
   }
 }
