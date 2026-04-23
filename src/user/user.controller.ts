@@ -21,6 +21,12 @@ export class UserController {
     return this.userService.create(dto);
   }
 
+  @Post('register')
+  @ApiOperation({ summary: 'Register user baru (public)' })
+  register(@Body() dto: CreateUserDto) {
+  return this.userService.register(dto);
+}
+
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN)
   @Get()

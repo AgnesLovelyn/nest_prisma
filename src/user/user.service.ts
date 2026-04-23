@@ -32,4 +32,16 @@ export class UserService {
       include: { student: true },
     });
   }
+  async register(dto: CreateUserDto) {
+    const hashedPassword = await bcrypt.hash(dto.password, 10);
+
+    return this.prisma.user.create({
+      data: {
+        username: dto.username,
+        password: hashedPassword,
+        role: dto.role,
+        studentId: dto.studentId,
+      },
+    });
+  }
 }
